@@ -228,7 +228,7 @@ body {
   bottom: 0;
   width: 100%; /* full chiều rộng */
   height: 100px;
-  background: #181818;
+  background: #212121;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -373,9 +373,9 @@ body {
 }
 
 .section {
-  display: none; /* ẩn toàn bộ section */
+  display: none;
 }
 
 .section.active {
-  display: block; /* chỉ hiện section đang active */
+  display: block;
 }
