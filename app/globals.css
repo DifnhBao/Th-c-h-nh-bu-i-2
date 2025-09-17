@@ -16,6 +16,7 @@ body {
 /* ========== SIDEBAR ========== */
 .menu {
   display: flex;
+  background: #ffffff0a;
   flex-direction: column;
   padding: 20px 0;
   position: fixed;
@@ -52,7 +53,7 @@ body {
   text-decoration: none;
   transition: 0.3s;
   border-radius: 20px;
-  margin: 4px 8px;
+  margin: 4px 20px;
 }
 
 .menu nav a i {
