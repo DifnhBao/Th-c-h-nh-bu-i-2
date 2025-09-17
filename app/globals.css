@@ -1,42 +1,380 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
+/* ========== RESET ========== */
 * {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-a {
-  color: inherit;
+body {
+  height: 100vh;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  background: linear-gradient(to top, #121212, #1b2a2f);
+  color: white;
+  font-weight: 600;
+}
+
+/* ========== SIDEBAR ========== */
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+}
+
+.menu .title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.menu .title img {
+  display: block;
+  margin: 0 auto;
+  max-width: 250px;
+  height: auto;
+}
+
+.menu nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #b3b3b3;
+  font-size: 16px;
+  padding: 12px 20px;
   text-decoration: none;
+  transition: 0.3s;
+  border-radius: 20px;
+  margin: 4px 8px;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.menu nav a i {
+  font-size: 18px;
+}
+
+.menu nav a:hover {
+  color: white;
+}
+
+.menu nav a.active {
+  background-color: #ffffff29;
+  color: white;
+}
+
+/* ========== HEADER ========== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 250px;
+  right: 0;
+  height: 70px;
+  background: #1b2a2f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 100;
+}
+
+.back-next-search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.chevron button {
+  background-color: #ffffff29;
+  color: #ffffff29;
+  border: none;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.chevron button:hover {
+  color: white;
+  transform: scale(1.2s);
+}
+
+.chevron:active {
+  transform: scale(0.95);
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-box i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ccc;
+}
+
+.input-text {
+  border: none;
+  padding: 10px 15px 10px 35px;
+  border-radius: 20px;
+  width: 200%;
+  height: 40px;
+  color: white;
+  background-color: #ffffff29;
+}
+
+.header-right {
+  display: flex;
+  gap: 10px;
+  margin-left: 0;
+}
+
+.sign-up,
+.login {
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  height: 40px;
+  width: 120px;
+  font-weight: bold;
+}
+
+.sign-up {
+  background: none;
+}
+
+.sign-up a {
+  text-decoration: none;
+  color: #ccc;
+}
+
+.sign-up:hover {
+  background-color: rgb(88, 175, 223, 0.1);
+}
+
+.login {
+  background: white;
+}
+
+.login a {
+  text-decoration: none;
+  color: black;
+}
+
+/* ========== MAIN CONTENT ========== */
+.main {
+  margin-left: 300px;
+  margin-top: 70px;
+  margin-bottom: 100px;
+  padding: 20px;
+  overflow-y: auto;
+  height: calc(100vh - 170px);
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.main .greeting-text {
+  font-size: 34px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.main h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.playlists {
+  display: flex;
+  gap: 20px;
+}
+
+.playlists-card {
+  width: 180px;
+  height: 180px;
+  background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.playlists-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========== FOOTER PLAYER ========== */
+.info {
+  position: fixed;
+  left: 0; /* chiếm từ cạnh trái */
+  right: 0; /* đến cạnh phải */
+  bottom: 0;
+  width: 100%; /* full chiều rộng */
+  height: 100px;
+  background: #181818;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 10;
+}
+
+.info-player {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.background-singer {
+  width: 60px;
+  height: 60px;
+  background: gray;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.info-song a {
+  display: block;
+  text-decoration: none;
+  color: white;
+}
+
+.song-tittle {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.artist-name {
+  font-size: 14px;
+  color: #bbb;
+}
+
+.player-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.control {
+  display: flex;
+  gap: 15px;
+  font-size: 18px;
+}
+
+.play {
+  background: none;
+  border: none;
+  color: rgb(170, 168, 168);
+  font-size: 20px;
+}
+
+.play-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: black;
+}
+
+.control button {
+  cursor: pointer;
+  transition: 0.2;
+}
+
+.control .play:hover,
+.volume:hover {
+  transform: scale(1.2s);
+  color: white;
+}
+
+.control button:hover,
+.volume:hover {
+  transform: scale(1.05);
+}
+
+.control i:active,
+.volume:hover {
+  transform: scale(0.95);
+}
+
+.run {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.run .seek-bar {
+  width: 500px;
+  height: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-appearance: none;
+  border-radius: 10px;
+}
+
+.run .seek-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 1px;
+  height: 20px;
+  background-color: rgb(88 196 220);
+  box-shadow: -400px 0 0 400px rgb(88 196 220);
+}
+
+/* .current-time {
+  position: absolute;
+  float: left;
+  left: 0;
+} */
+
+.music-time {
+  position: absolute;
+  float: left;
+  left: 0;
+}
+
+.vol {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.volume {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.vol input[type="range"] {
+  height: 4px;
+  cursor: pointer;
+}
+
+.section {
+  display: none; /* ẩn toàn bộ section */
+}
+
+.section.active {
+  display: block; /* chỉ hiện section đang active */
 }
